@@ -14,7 +14,7 @@ class ColorizingStreamHandler(logging.StreamHandler):
         'black': 0,
         'red': 1,
         'green': 2,
-        'yellow': 3 ,
+        'yellow': 3,
         'blue': 4,
         'magenta': 5,
         'cyan': 6,
@@ -65,7 +65,7 @@ class ColorizingStreamHandler(logging.StreamHandler):
             raise
         except IOError:
             pass
-        except:
+        except Exception:
             self.handleError(record)
 
     if os.name != 'nt':
