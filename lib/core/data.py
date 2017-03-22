@@ -1,50 +1,17 @@
-# !/usr/bin/env python
-#  -*- coding: utf-8 -*-
-__author__ = 'xy'
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# project = https://github.com/Xyntax/POC-T
+# author = i@cdxy.me
 
-from lib.core.log import LOGGER
-# object to share within function and classes command
-# line options and settings
-"""
-paths
-    ROOT_PATH
-    DATA_PATH
-    MODULES_PATH
-    OUTPUT_PATH
-    UA_LIST_PATH
-    WEAK_PASS
-    LARGE_WEAK_PASS
+from lib.core.log import MY_LOGGER
+from lib.core.datatype import AttribDict
 
-conf
-    MODULE_NAME        **
-    MODULE_FILE_PATH   **.py
-    MODULE_MODE        f / i / n
-    INPUT_FILE_PATH    path
-    SCREEN_OUTPUT      T / F
-    FILE_OUTPUT        T / F
-    OUTPUT_FILE_PATH   path
-    THREADS_NUM        int
-    I_NUM2             string
-    SINGLE_MODE        T / F
-    ENGINE             t / c
-    DEBUG              T / F
-    UPDATE             T / F
-    NETWORK_STR        string
-    # TODO
-    DISABLE_COLOR      T / F
+logger = MY_LOGGER
 
-th
-    queue
-    THREADS_NUM
+paths = AttribDict()
 
-"""
+cmdLineOptions = AttribDict()
 
-logger = LOGGER
+conf = AttribDict()
 
-
-conf = {}
-
-paths = {}
-
-th = {}
-
+th = AttribDict()

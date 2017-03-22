@@ -4,7 +4,10 @@
 *.lprof
 *.py[cod]
 *.swp
+*.conf
 .coverage
 .svn
 .tox
-.idea/
+.idea
+output
+data

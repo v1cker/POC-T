@@ -1,111 +1,47 @@
-# POC-T
-[![Python 2.6|2.7](https://img.shields.io/badge/python-2.6|2.7-yellow.svg)](https://www.python.org/) [![License](https://img.shields.io/badge/license-GPLv2-red.svg)](https://raw.githubusercontent.com/sqlmapproject/sqlmap/master/doc/COPYING)  
-  
-![](http://www.cdxy.me/wp-content/uploads/2016/04/2016-04-23-180429屏幕截图.png)  
-  
-简易并发框架，为用户脚本提供并发解决方案。  
-支持 **多线程** 和 **协程(单线程异步)** 两种并发模式。
-  
-(开发中，欢迎提交POC和改进建议)  
-## 它能做什么？  
-它只提供了一个并发框架，附带一些示例模块，功能需要用户自行添加模块实现。   
-  
-### 功能示例 
-#### 批量漏洞验证 
-* `./module/jboss.py` JBoss漏洞检测  
-* `./module/fzxy_sqli.py` 方正翔宇某系统SQLI检测  
-* `./module/S2032.py` Struts2 S2-032 远程命令执行  
-  
-#### 爆破&扫描 
-* `./module/zabbix_wp.py` zabbix弱口令扫描  
-  
-#### 爬虫&采集
-* `./module/spider.py` B站用户签名档爬虫  
-* `./module/pycurl_ip` html页面采集示例  
-  
-#### 其他 
-* `./module/vote++.py` 给基友开发的刷票脚本  
-* 等你开脑洞  
-  
+# POC-T: *Pentest Over Concurrent Toolkit* 
+[![Python 2.7](https://img.shields.io/badge/python-2.7-yellow.svg)](https://www.python.org/) [![License](https://img.shields.io/badge/license-GPLv2-red.svg)](https://raw.githubusercontent.com/Xyntax/POC-T/master/doc/LICENSE.txt) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1413552d34bc4a4aa84539db1780eb56)](https://www.codacy.com/app/xyntax/POC-T?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Xyntax/POC-T&amp;utm_campaign=Badge_Grade) 
 
-## 开始 
-### 快速开始 
-* `pip install -r requirement.txt` 
-* `python POC-T.py`  
+脚本调用框架，用于渗透测试中 **采集|爬虫|爆破|批量PoC** 等需要并发的任务。  
 
-### 参数中文说明 
-```
-usage: POC-T.py [-T|-C] [-m] [-f|-i|-n] [options]
-  
-example:
-    python POC-T.py -T -m test -f ./dic/1-100.txt
-    python POC-T.py -C -m test -i 1-100
-    python POC-T.py -C -m spider -n 10.0.0.0/24
-  
-engine:
-  -T                多线程模式
-  -C                协程(单线程异步)模式
-  -t [num]          设置并发数量(线程数量)
-  
-module:
-  -m [module]       指定加载的POC或模块名称
+![banner.png](https://github.com/Xyntax/POC-T/blob/2.0/doc/banner.png) 
 
-target mode:
-  -f [target]       从文件加载目标列表(常用于扫描或批量漏洞验证)
-  -i [start]-[end]  给定起始数字和结束数字，自动生成payload(常用于有数字规则的遍历，爬虫等)
-  -n [IP/MASK]      从IP和子网掩码加载目标，如:10.0.0.0/28 (用于扫描网段)
-
-optimization:
-  -o [output]       输出文件路径，默认保存在./output/目录下
-  --single          当验证到一个结果时退出(常用于密码爆破)
-  --nF              取消文件输出
-  --nS              取消屏幕输出
-  --show            显示./module/文件夹下所有可用的模块名称
-  --debug           开启debug模式，输出一些细节
-  --update          自动从github更新程序
-```  
-  
-## 运行效果  
-  
-* B站用户爬虫模块(kali2) 
- ![](http://www.cdxy.me/wp-content/uploads/2016/04/2016-04-15-102129屏幕截图.png)  
-* JBoss漏洞检测模块(win7)  
- ![](http://www.cdxy.me/wp-content/uploads/2016/04/微信截图_20160419213553.png)  
-  
-  
-## 结构  
-* `POC-T.py` 程序入口  
-* `module` POC脚本库  
-* `data` 资源库  
-* `lib` 项目代码  
-  
-## 模块编写规则
-新建py文件,添加以下三个函数,其中**poc()**必需要有,添加逻辑使验证成功(漏洞存在)时`return True`,验证失败时`return False`    
-将文件保存为 `testPOC.py` 并拷贝到 `./module/` 文件夹下  
-使用 `-m testPOC` 参数即可完成加载  
-  
-**注**:一些功能在开发中，目前只用到了`poc()`  
-  
-```
-def info():
-    return info_string
-def poc(str):
-    return True or false
-def exp():
-    return True or false
-```  
-
-相关链接
+脚本收录
 ----
-* [感谢列表](./docs/THANKS.md)
-* [开发日志](./docs/CHANGELOG.md)
-* [问题/BUG反馈](https://github.com/Xyntax/POC-T/issues)
-* [版权声明](./docs/LICENSE.txt)
-* [中文文档](./docs/USAGE.md)
+欢迎提交PoC及实用脚本(i@cdxy.me)，您贡献的PoC相关信息将会在以下位置公开。
+* [脚本库](https://github.com/Xyntax/POC-T/wiki/%E5%86%85%E7%BD%AE%E8%84%9A%E6%9C%AC%E5%BA%93)
+* [致谢](https://github.com/Xyntax/POC-T/wiki/%E8%87%B4%E8%B0%A2)
 
+
+特点
+---
+* 支持多线程/Gevent两种并发模式  
+* 极简式脚本编写，无需参考文档  
+* 内置脚本扩展及常用PoC函数  
+* 支持第三方搜索引擎API(已完成ZoomEye/Shodan/Google)  
+
+
+依赖
+---
+* Python 2.7
+* pip
+
+用户手册
+----
+
+* [快速开始](https://github.com/Xyntax/POC-T/wiki/02-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
+* [编写脚本](https://github.com/Xyntax/POC-T/wiki/03-%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC)
+* [脚本扩展工具](https://github.com/Xyntax/POC-T/wiki/04-%E8%84%9A%E6%9C%AC%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7)
+* [第三方搜索引擎](https://github.com/Xyntax/POC-T/wiki/05-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E)
+* [需求与设计](https://github.com/Xyntax/POC-T/wiki/01-%E9%9C%80%E6%B1%82%E4%B8%8E%E8%AE%BE%E8%AE%A1)
+
+其他
+---
+* [问题反馈](https://github.com/Xyntax/POC-T/issues/new)
+* [更新日志](https://github.com/Xyntax/POC-T/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+* [版权声明](https://github.com/Xyntax/POC-T/wiki/%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E)
 
 联系作者
 ----
 * mail:i@cdxy.me  
-* 博客:[http://www.cdxy.me](http://www.cdxy.me)  
+
   
